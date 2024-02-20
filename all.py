@@ -33,7 +33,7 @@ def post(cgi, data, token):
 resv = requests.get("https://ak-conf.hypergryph.com/config/prod/official/Android/version").json()
 token1 = requests.post(
     "https://as.hypergryph.com/user/auth/v1/token_by_phone_password",
-    json={"phone": "13105612936", "password": "zhu159637"}
+    json={"phone": "", "password": ""}
 ).json()["data"]["token"]
 token2 = requests.post(
     "https://as.hypergryph.com/user/oauth2/v2/grant",
