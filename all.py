@@ -12,7 +12,7 @@ import requests
 temp = {}
 phone=sys.argv[1]#os.environ["PHONE"]
 pwd=sys.argv[2]#os.environ["PWD"]
-print(sys.argv)
+
 def get_md5(src):
     m1 = hashlib.md5()
     m1.update(src.encode('utf-8'))
@@ -35,7 +35,7 @@ def post(cgi, data, token):
 resv = requests.get("https://ak-conf.hypergryph.com/config/prod/official/Android/version").json()
 
 res = requests.post("https://as.hypergryph.com/user/auth/v1/token_by_phone_password",json={"phone": phone, "password": pwd}).json()
-print(res)
+#print(res)
 token1 = res["data"]["token"]
 
 
