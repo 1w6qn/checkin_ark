@@ -12,7 +12,7 @@ import requests
 temp = {}
 phone=sys.argv[1]#os.environ["PHONE"]
 pwd=sys.argv[2]#os.environ["PWD"]
-
+print(sys.argv)
 def get_md5(src):
     m1 = hashlib.md5()
     m1.update(src.encode('utf-8'))
