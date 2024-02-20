@@ -139,8 +139,125 @@ print("social finish")
 
 # recruit
 def select_tag(tags):
-    # TODO
-    return [], 0, 32400
+    selected, sp, duration_ = [], 0, 32400
+    if 11 in tags:
+        sp = 11  # 6
+    elif 14 in tags:
+        sp = 14  # 5
+        selected = [14]
+    elif 27 in tags:
+        selected = [27]
+    elif 7 in tags and 12 in tags:
+        selected = [7, 12]
+    elif 7 in tags and 20 in tags:
+        selected = [7, 20]
+    elif 7 in tags and 23 in tags:
+        selected = [7, 23]
+    elif 7 in tags and 24 in tags:
+        selected = [7, 24]
+    elif 26 in tags and 19 in tags:
+        selected = [26, 19]
+    elif 26 in tags and 22 in tags:
+        selected = [26, 22]
+    elif 26 in tags and 3 in tags:
+        selected = [26, 3]
+    elif 26 in tags and 23 in tags:
+        selected = [26, 23]
+    elif 25 in tags and 12 in tags:
+        selected = [25, 12]
+    elif 25 in tags and 24 in tags:
+        selected = [25, 24]
+    elif 21 in tags and 24 in tags:
+        selected = [21, 24]
+    elif 9 in tags and 24 in tags:
+        selected = [9, 24]
+    elif 4 in tags and 24 in tags:
+        selected = [4, 24]
+    elif 13 in tags and 21 in tags:
+        selected = [13, 21]
+    elif 13 in tags and 6 in tags:
+        selected = [4, 24]
+    elif 13 in tags and 19 in tags and 10 in tags:
+        selected = [13, 19, 10]
+    elif 13 in tags and 19 in tags and 2 in tags:
+        selected = [13, 19, 2]
+    elif 12 in tags and 8 in tags:
+        selected = [12, 8]
+    elif 12 in tags and 18 in tags:
+        selected = [12, 18]
+    elif 12 in tags and 23 in tags:
+        selected = [12, 23]
+    elif 16 in tags and 8 in tags:
+        selected = [16, 8]
+    elif 16 in tags and 18 in tags:
+        selected = [16, 18]
+    elif 16 in tags and 5 in tags:
+        selected = [16, 5]
+    elif 16 in tags and 20 in tags:
+        selected = [16, 20]
+    elif 15 in tags and 6 in tags:
+        selected = [15, 6]
+    elif 15 in tags and 19 in tags:
+        selected = [15, 19]
+    elif 23 in tags and 19 in tags and 6 in tags:
+        selected = [23, 19, 6]
+    elif 19 in tags and 5 in tags:
+        selected = [19, 5]
+    elif 19 in tags and 21 in tags:
+        selected = [19, 21]
+    elif 19 in tags and 3 in tags:
+        selected = [19, 3]
+    elif 22 in tags and 1 in tags:
+        selected = [22, 1]
+    elif 22 in tags and 6 in tags:
+        selected = [22, 6]
+    elif 22 in tags and 10 in tags:
+        selected = [22, 10]
+    elif 22 in tags and 21 in tags:
+        selected = [22, 21]
+    elif 20 in tags and 22 in tags:
+        selected = [20, 22]
+    elif 20 in tags and 3 in tags:
+        selected = [20, 3]
+    elif 20 in tags and 5 in tags:
+        selected = [20, 5]
+    elif 7 in tags:
+        selected = [7]  # 4
+    elif 26 in tags:
+        selected = [26]
+    elif 24 in tags:
+        selected = [24]
+    elif 25 in tags:
+        selected = [25]
+    elif 12 in tags:
+        selected = [12]
+    elif 13 in tags:
+        selected = [13]
+    elif 16 in tags:
+        selected = [16]
+    elif 15 in tags and 8 in tags:
+        selected = [15, 8]
+    elif 15 in tags and 18 in tags:
+        selected = [15, 18]
+    elif 15 in tags and 5 in tags:
+        selected = [15, 5]
+    elif 15 in tags and 23 in tags:
+        selected = [15, 23]
+    elif 20 in tags and 2 in tags:
+        selected = [20, 2]
+    elif 20 in tags and 10 in tags:
+        selected = [20, 10]
+    elif 23 in tags and 19 in tags and 2 in tags:
+        selected = [23, 19, 6]
+    elif 23 in tags and 6 in tags:
+        selected = [23, 6]
+    elif 23 in tags and 2 in tags:
+        selected = [23, 2]
+    elif 23 in tags and 9 in tags:
+        selected = [23, 9]
+    elif 23 in tags and 1 in tags:
+        selected = [23, 1]
+    return selected, sp, duration_
 
 
 for i in range(0, 4):
@@ -149,14 +266,18 @@ for i in range(0, 4):
     if slot['maxFinishTs'] > time(): continue
     if player_data["status"]['recruitLicense'] == 0: break
     if slot['state'] == 2:
-        res = post('/gacha/finishNormalGacha', {"slotId": str(i)}, token)
+        post('/gacha/finishNormalGacha', {"slotId": str(i)}, token)
     tag_list, special_tag_id, duration = select_tag(slot['tags'])
-    post('/gacha/normalGacha',
-         {"slotId": str(i), "tagList": tag_list, "specialTagId": special_tag_id, "duration": duration}, token)
+    if not (special_tag_id == 11):
+        post('/gacha/normalGacha', {
+            "slotId": str(i), "tagList": tag_list, "specialTagId": special_tag_id, "duration": duration
+        }, token)
+        player_data["status"]['recruitLicense'] -= 1
 print("recruit finish")
 # building
-"""
 post("/building/gainAllIntimacy", {}, token)
+"""
+
 if player_data["building"]["rooms"]["MEETING"]["slot_36"]["socialReward"]["daily"]:
     post('/building/getDailyClue', {}, token)
 if player_data["building"]["rooms"]["MEETING"]["slot_36"]["socialReward"]["daily"]:
@@ -166,6 +287,18 @@ post('/building/settleManufacture',
      {"roomSlotIdList": list(player_data["building"]["rooms"]["MANUFACTURE"].keys()), "supplement": 1}, token)
 post("/building/deliveryBatchOrder", {"slotList": list(player_data["building"]["rooms"]["TRADING"].keys())}, token)
 print("building finish")
+# campaignv2
+stage_id = player_data["campaignsV2"]["open"]["rotate"]
+inst_id = 0
+for k, v in player_data["consumable"]["EXTERMINATION_AGENT"].items():
+    if v["count"] > 0:
+        inst_id = int(k)
+        break
+
+if (player_data["campaignsV2"]["sweepMaxKills"].get(stage_id, 0) == 400) and inst_id and (player_data["status"]["ap"] >= 25)\
+        and (player_data["campaignsV2"]["campaignCurrentFee"]<player_data["campaignsV2"]["campaignTotalFee"]):
+    post("/campaignV2/battleSweep", {"stageId": stage_id, "itemId": "EXTERMINATION_AGENT", "instId": inst_id}, token)
+print("campaign finish")
 # mission
 post("/mission/autoConfirmMissions", {"type": "DAILY"}, token)
 post("/mission/autoConfirmMissions", {"type": "WEEKLY"}, token)
