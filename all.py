@@ -4,13 +4,14 @@ import json
 import os
 import random
 import string
+import sys
 from time import time
 
 import requests
 
 temp = {}
-phone=os.environ["PHONE"]
-pwd=os.environ["PWD"]
+phone=sys.argv[1]#os.environ["PHONE"]
+pwd=sys.argv[2]#os.environ["PWD"]
 
 def get_md5(src):
     m1 = hashlib.md5()

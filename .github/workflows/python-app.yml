@@ -31,4 +31,4 @@ jobs:
           PHONE: ${{ secrets.PHONE }}
           PWD: ${{ secrets.PWD }}
       run: |
-        python all.py
+        python all.py "$PHONE" "$PWD"
