@@ -10,6 +10,7 @@ import requests
 temp = {}
 phone = os.environ["PHONE"]
 pwd=os.environ["PWD"]
+print(os.environ)
 print(phone,pwd)
 def GetMd5(src):
     m1 = hashlib.md5()
