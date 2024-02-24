@@ -104,6 +104,13 @@ if act := player_data["activity"]["LOGIN_ONLY"]:
     for k in act:
         post('/activity/loginOnly/getReward', {"activityId": k}, token)
 
+if act := player_data["activity"]["CHECKIN_ONLY"]:
+    for k,v in act.items():
+        for index, value in enumerate(v["history"]):
+            if value:
+                post('/activit/getActivityCheckInReward', {"activityId": k,"index":index}, token)
+
+
 # bless only
 if act := player_data["activity"]["BLESS_ONLY"]:
     for k, v in act.items():
@@ -292,6 +299,12 @@ if len(player_data["building"]["rooms"]["MEETING"]["slot_36"]["board"]) == 7:
 post('/building/settleManufacture',
      {"roomSlotIdList": list(player_data["building"]["rooms"]["MANUFACTURE"].keys()), "supplement": 1}, token)
 post("/building/deliveryBatchOrder", {"slotList": list(player_data["building"]["rooms"]["TRADING"].keys())}, token)
+
+#for k,v in res["rooms"].items():
+#    d=dict(filter(lambda x:x["charId"] in v["chars"],player_data["troop"]["chars"]))
+#    post("/building/assignChar",{"roomSlotId":k,"charInstIdList":list(d.keys()},token  )
+if False:
+    pass
 print("building finish")
 # social
 friend_list=post("/social/getSortListInfo", {"type":1,"sortKeyList":["level","infoShare"],"param":{}}, token)["result"]
