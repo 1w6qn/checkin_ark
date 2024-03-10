@@ -282,6 +282,11 @@ for i in range(0, 4):
         player_data["status"]['recruitLicense'] -= 1
 print("recruit finish")
 # building
+for cid,d in player_data["building"]["chars"].items():
+    if d["ap"]==8640000:continue
+    for i in range(10):
+        post('/building/assignChar',{"roomSlotId":"slot_9","charInstIdList":[int(cid)]},token)
+    break
 post("/building/gainAllIntimacy", {}, token)
 
 if player_data["building"]["rooms"]["MEETING"]["slot_36"]["dailyReward"]:
