@@ -78,9 +78,8 @@ def auto_recruit(player_data, token):
 def auto_building(player_data, token):
     for cid, d in player_data["building"]["chars"].items():
         if d["ap"] == 8640000: continue
-        for i in range(10):
-            post('/building/assignChar', {"roomSlotId": "slot_9", "charInstIdList": [int(cid)]}, token)
-            post('/building/assignChar', {"roomSlotId": "slot_9", "charInstIdList": []}, token)
+        post('/building/assignChar', {"roomSlotId": "slot_9", "charInstIdList": [int(cid)]}, token)
+        post('/building/assignChar', {"roomSlotId": "slot_9", "charInstIdList": []}, token)
         break
     post("/building/gainAllIntimacy", {}, token)
     post('/building/settleManufacture',
