@@ -6,7 +6,7 @@ import sys
 import requests
 
 from game import temp, post, auto_checkin, auto_mail, auto_recruit, auto_building, auto_social, auto_campaign, \
-    mission_auto_confirm, auto_social_buy
+    mission_auto_confirm, auto_social_buy, auto_gacha
 from utils import get_md5, u8_sign
 
 phone = sys.argv[1]
@@ -117,7 +117,7 @@ print("social finish")
 # campaignV2
 auto_campaign(player_data, token)
 print("campaign finish")
-
+auto_gacha(player_data,token)
 # mission
 mission_auto_confirm(token)
 print("mission finish")

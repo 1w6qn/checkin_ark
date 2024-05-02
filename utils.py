@@ -1,5 +1,17 @@
 import hashlib
 import hmac
+import json
+
+
+log = print
+
+
+def read_json(filepath: str):
+    with open(filepath, encoding="utf-8") as f:
+        return json.load(f)
+
+
+#item_table=read_json("./item_table.json")
 
 
 def get_md5(src):
@@ -12,6 +24,14 @@ def u8_sign(data):
     sign = hmac.new('91240f70c09a08a6bc72af1a5c8d4670'.encode(), data.encode(), hashlib.sha1)
     return sign.hexdigest()
 
+
+def print_items(items):
+    #s = ""
+    #for i in items:
+    #    s += f"{item_table[i['id']]['name']}*{i['count']}, "
+    #if s:
+    #    log("获得",s)
+    log(items)
 
 def select_tag(tags):
     selected, sp, duration_ = [], 0, 32400
