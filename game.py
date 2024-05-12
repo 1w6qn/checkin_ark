@@ -102,6 +102,7 @@ def auto_recruit(player_data, token):
             slot = res["playerDataDelta"]["modified"]["recruit"]["normal"]["slots"][str(i)]
             log(f"Refreshed Slot:{i}, tag: {slot['tags']}")
             player_data["building"]["rooms"]["HIRE"]["slot_23"]["refreshCount"] -= 1
+            tag_list, special_tag_id, duration = select_tag(slot['tags'])
         if not (special_tag_id == 11):
             post('/gacha/normalGacha', {
                 "slotId": str(i), "tagList": tag_list, "specialTagId": special_tag_id, "duration": duration
