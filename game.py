@@ -68,7 +68,7 @@ def auto_checkin(player_data, token):
         for k in act:
             if not act[k]["currentStatus"]: continue
             res = post('/activity/actCheckinAccess/getCheckInReward', {"activityId": k}, token)
-            print_items(res["items"])
+            #print_items(res["items"])
 
 
 def auto_mail(token):
