@@ -23,14 +23,14 @@ def auto_checkin(player_data, token):
         log("Found LoginOnly Activity")
         for k in act:
             res = post('/activity/loginOnly/getReward', {"activityId": k}, token)
-            print_items(res["reward"])
+            #print_items(res["reward"])
     if act := player_data["activity"]["CHECKIN_ONLY"]:
         log("Found CheckinOnly Activity")
         for k, v in act.items():
             for index, value in enumerate(v["history"]):
                 if value:
                     res = post('/activity/getActivityCheckInReward', {"activityId": k, "index": index}, token)
-                    print_items(res["items"])
+                    #print_items(res["items"])
     # bless only
     if act := player_data["activity"]["BLESS_ONLY"]:
         log("Found BlessOnly Activity")
