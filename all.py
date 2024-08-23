@@ -80,16 +80,17 @@ temp[token]["secret"] = post("/account/login", {
 }, token)["secret"]
 
 player_data = post("/account/syncData", {"platform": 1}, token)["user"]
-# checkIn
-if player_data["checkIn"]["canCheckIn"]:
-    post('/user/checkIn', {}, token)
-print("checkIn finish")
-if 0:
+
+if 1:
     for i in range(20):
         auto_ra(player_data,token)
         print(f"{i + 1}/20")
     print("ra finish")
-
+"""
+# checkIn
+if player_data["checkIn"]["canCheckIn"]:
+    post('/user/checkIn', {}, token)
+print("checkIn finish")
 # activity
 auto_checkin(player_data, token)
 
@@ -122,3 +123,4 @@ auto_gacha(player_data,token)
 # mission
 mission_auto_confirm(token)
 print("mission finish")
+"""

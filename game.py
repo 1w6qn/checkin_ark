@@ -212,13 +212,15 @@ def auto_social_buy(player_data, token):
             player_data["status"]["socialPoint"] -= good["price"]
 def auto_activity(player_data, token):
     for k,v in player_data["activity"]["TYPE_ACT27SIDE"].items():
-        post("/activity/act27side/nextDay", {"activityId":"act27sre"}, token)
-        post("/activity/act27side/saleStart", {"activityId":"act27sre"}, token)
-        post("/activity/act27side/purchase", {"activityId":"act27sre","strategyIds":[2,2,2]}, token)
-        post("/activity/act27side/sell", {"activityId":"act27sre","price":45}, token)
-        post("/activity/act27side/sell", {"activityId":"act27sre","price":35}, token)
-        post("/activity/act27side/sell", {"activityId":"act27sre","price":950}, token)
-        post("/activity/act27side/saleSettle", {"activityId":"act27sre"}, token)
+        if v["signedIn"]:
+            continue
+        post("/activity/act27side/nextDay", {"activityId":k}, token)
+        post("/activity/act27side/saleStart", {"activityId":k}, token)
+        post("/activity/act27side/purchase", {"activityId":k,"strategyIds":[2,2,2]}, token)
+        post("/activity/act27side/sell", {"activityId":k,"price":45}, token)
+        post("/activity/act27side/sell", {"activityId":k,"price":35}, token)
+        post("/activity/act27side/sell", {"activityId":k,"price":950}, token)
+        post("/activity/act27side/saleSettle", {"activityId":k}, token)
 
 
 def auto_ra(player_data, token):
