@@ -120,8 +120,10 @@ print("social finish")
 auto_campaign(player_data, token)
 print("campaign finish")
 auto_gacha(player_data,token)
-auto_activity(player_data, token)
-print("activity finish")
+
 # mission
 mission_auto_confirm(token)
 print("mission finish")
+#activity
+auto_activity(player_data, token)
+print("activity finish")
