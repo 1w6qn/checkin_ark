@@ -6,7 +6,7 @@ import sys
 import requests
 
 from game import temp, post, auto_checkin, auto_mail, auto_recruit, auto_building, auto_social, auto_campaign, \
-    mission_auto_confirm, auto_social_buy, auto_gacha,auto_ra
+    mission_auto_confirm, auto_social_buy, auto_gacha,auto_ra,auto_activity
 from utils import get_md5, u8_sign
 
 phone = sys.argv[1]
@@ -81,12 +81,12 @@ temp[token]["secret"] = post("/account/login", {
 
 player_data = post("/account/syncData", {"platform": 1}, token)["user"]
 
-if 1:
+if 0:
     for i in range(20):
         auto_ra(player_data,token)
         print(f"{i + 1}/20")
     print("ra finish")
-"""
+
 # checkIn
 if player_data["checkIn"]["canCheckIn"]:
     post('/user/checkIn', {}, token)
@@ -120,7 +120,8 @@ print("social finish")
 auto_campaign(player_data, token)
 print("campaign finish")
 auto_gacha(player_data,token)
+auto_activity(player_data, token)
+print("activity finish")
 # mission
 mission_auto_confirm(token)
 print("mission finish")
-"""

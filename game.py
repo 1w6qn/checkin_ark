@@ -223,6 +223,10 @@ def auto_activity(player_data, token):
         post("/activity/act27side/sell", {"activityId":k,"price":950}, token)
         post("/activity/act27side/saleSettle", {"activityId":k}, token)
 
+def auto_battle(player_data, token):
+    post("/quest/battleStart",{"isRetro":0,"pry":0,"battleType":0,"continuous":None,"usePracticeTicket":0,"stageId":"main_01-07","squad":{"squadId":"0","name":None,"slots":[{"charInstId":78,"skillIndex":0,"currentEquip":"uniequip_002_myrtle"},{"charInstId":131,"skillIndex":1,"currentEquip":"uniequip_002_bpipe"},{"charInstId":72,"skillIndex":0,"currentEquip":"uniequip_001_elysm"},{"charInstId":176,"skillIndex":2,"currentEquip":"uniequip_002_mostma"},{"charInstId":79,"skillIndex":1,"currentEquip":"uniequip_002_amgoat"},{"charInstId":24,"skillIndex":2,"currentEquip":"uniequip_002_angel"},{"charInstId":141,"skillIndex":1,"currentEquip":"uniequip_002_plosis"},None,None,None,None,None]},"assistFriend":None,"isReplay":1,"startTs":time()},token)
+    sleep(73)
+    post("/quest/battleFinish",{},token)
 
 def auto_ra(player_data, token):
     post("/sandboxPerm/sandboxV2/build",
