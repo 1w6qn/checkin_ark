@@ -210,6 +210,15 @@ def auto_social_buy(player_data, token):
         if player_data["status"]["socialPoint"] >= good["price"]:
             post("/shop/buySocialGood", {"goodId": good['goodId'], "count": 1}, token)
             player_data["status"]["socialPoint"] -= good["price"]
+def auto_activity(player_data, token):
+    for k,v in player_data["activity"]["TYPE_ACT27SIDE"].items():
+        post("/activity/act27side/nextDay", {"activityId":"act27sre"}, token)
+        post("/activity/act27side/saleStart", {"activityId":"act27sre"}, token)
+        post("/activity/act27side/purchase", {"activityId":"act27sre","strategyIds":[2,2,2]}, token)
+        post("/activity/act27side/sell", {"activityId":"act27sre","price":45}, token)
+        post("/activity/act27side/sell", {"activityId":"act27sre","price":35}, token)
+        post("/activity/act27side/sell", {"activityId":"act27sre","price":950}, token)
+        post("/activity/act27side/saleSettle", {"activityId":"act27sre"}, token)
 
 
 def auto_ra(player_data, token):
