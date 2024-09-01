@@ -80,7 +80,7 @@ def auto_mail(token):
             sys.append(i['mailId'])
         else:
             norm.append(i['mailId'])
-    if not (norm and sys):
+    if (norm and sys):
         res = post('/mail/receiveAllMail', {"mailIdList": norm, "sysMailIdList": sys}, token)
         log("Received all mails")
         print_items(res["items"])
