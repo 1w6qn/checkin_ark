@@ -29,5 +29,4 @@ jobs:
     - name: run
       shell: bash
       run: |
-        python all.py ${{ secrets.PHONE }} ${{ secrets.PWD }}
         python all.py ${{ secrets.PHONE1 }} ${{ secrets.PWD1 }}
